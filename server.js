@@ -74,7 +74,7 @@ app.get("/create-payment-link", async (req, res) => {
             amount: amount * 100,
             currency: "INR",
             description: `Coin Dispenser Payment ₹${amount}`,
-            expire_by: Math.floor(Date.now() / 1000) + 10 * 60, // 10 mins expiry
+            expire_by: Math.floor(Date.now() / 1000) + 20 * 60, // 20 minutes
             notes: {
                 machine: "coin_dispenser",
             },
