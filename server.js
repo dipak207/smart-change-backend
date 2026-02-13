@@ -120,9 +120,20 @@ app.get("/create-payment-link", async (req, res) => {
             short_url: paymentLink.short_url,
         });
     } catch (err) {
-        console.log("❌ create-payment-link error:", err.message);
-        res.status(500).json({ ok: false, error: err.message });
+        console.log("❌ create-payment-link error RAW =", err);
+        console.log("❌ typeof err =", typeof err);
+        console.log("❌ err?.message =", err?.message);
+        console.log("❌ err?.error =", err?.error);
+        console.log("❌ err?.response?.data =", err?.response?.data);
+
+        return res.status(500).json({
+            ok: false,
+            message: err?.message || "Unknown error",
+            raw: err || null,
+            response: err?.response?.data || null,
+        });
     }
+
 });
 
 /**
